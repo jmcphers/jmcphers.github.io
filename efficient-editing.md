@@ -1,3 +1,7 @@
+---
+layout: page
+title: Efficient Editing with Vim
+---
 # Efficient Editing With vim
 
 > "To me, vi is Zen. 
