@@ -49,21 +49,21 @@ Here are a few of the more useful motions:
 
 vim has many commands that can send you to where you want to go in your file -- there's rarely a need to scroll manually through it. The below keystrokes are not technically motions, since they move around in the file instead of in a particular line.
 
-<C-F>	Move the cursor forward by a screenful of text
-<C-B>	Move the cursor backward by a screenful of text
-G	Move the cursor to the end of the file
-numG	Move the cursor line num. (For instance, 10G moves to line 10.)
-gg	Move the cursor to the beginning of the file
-H	Move the cursor to the top of the screen.
-M	Move the cursor to the middle of the screen.
-L	Move the cursor to the bottom of the screen.
-*	Read the string under the cursor and go to the next place it appears. (For instance, if your cursor was somewhere on the word "bob," the cursor would move to the next occurance of "bob" in your file.)
-#	Same as above, except it moves the cursor to the previous occurance.
-/text	Starting from the cursor, find the next occurance of the string text and go to it. You will need to press Enter to execute the search. To re-execute your last search, type n (for next occurance).
-?text	Same as /, but searches in the opposite direction.
-ma	Make a bookmark named a at the current cursor position. A bookmark can be named any lowercase letter. You can't see the bookmark, but it's there!
-`a	Go to bookmark a. Important: that's a backtick, not a single quote. The backtick is located to the left of the 1 on most keyboards.
-`.	Go to the line that you last edited. This is very useful! If you need to scroll through the file to look something up, you can go back to where you were without bookmarking it by using the `. command.
+| <C-F>	| Move the cursor forward by a screenful of text
+| <C-B>	| Move the cursor backward by a screenful of text
+| G	    | Move the cursor to the end of the file
+| numG	| Move the cursor line num. (For instance, 10G moves to line 10.)
+| gg	| Move the cursor to the beginning of the file
+| H  	| Move the cursor to the top of the screen.
+| M	    | Move the cursor to the middle of the screen.
+| L	    | Move the cursor to the bottom of the screen.
+| *	    | Read the string under the cursor and go to the next place it appears. (For instance, if your cursor was somewhere on the word "bob," the cursor would move to the next occurance of "bob" in your file.)
+| #	    | Same as above, except it moves the cursor to the previous occurance.
+| /text	| Starting from the cursor, find the next occurance of the string text and go to it. You will need to press Enter to execute the search. To re-execute your last search, type n (for next occurance).
+| ?text	| Same as /, but searches in the opposite direction.
+| ma	| Make a bookmark named a at the current cursor position. A bookmark can be named any lowercase letter. You can't see the bookmark, but it's there!
+| \`a	| Go to bookmark a. Important: that's a backtick, not a single quote. The backtick is located to the left of the 1 on most keyboards.
+| \`.	| Go to the line that you last edited. This is very useful! If you need to scroll through the file to look something up, you can go back to where you were without bookmarking it by using the `. command.
 
 ## Typing efficiently
 
@@ -77,47 +77,48 @@ To use keyword completion, just type the first few letters of the string (e.g. i
 
 Most users new to vim get into insert mode by typing i. This works, but it's often pretty inefficient, since vi has a host of commands that leave the editor in insert mode. Here are some of the more popular ones:
 
-i	Insert text to the left of the current character.
-I	Insert text at the beginning of the current line.
-a	Insert text to the right of the current character.
-A	Insert text at the end of the current line.
-o	Create a new line under the current one and insert text there.
-O	Create a new line above the current one and insert text there.
-c{motion}	Delete (change) the text moved over by {motion} and insert text to replace it. For instance, c$ would delete the text from the cursor to the end of the line and enter insert mode. ct! would delete the text from the cursor up to (but not including) the next exclamation mark and enter insert mode. The deleted text is copied to the clipboard and can be pasted.
-d{motion}	Delete the text moved over by {motion} -- same as c{motion}, but doesn't enter insert mode.
+| i	| Insert text to the left of the current character.
+| I	| Insert text at the beginning of the current line.
+| a	| Insert text to the right of the current character.
+| A	| Insert text at the end of the current line.
+| o	| Create a new line under the current one and insert text there.
+| O	| Create a new line above the current one and insert text there.
+| c{motion}	| Delete (change) the text moved over by {motion} and insert text to replace it. For instance, c$ would delete the text from the cursor to the end of the line and enter insert mode. ct! would delete the text from the cursor up to (but not including) the next exclamation mark and enter insert mode. The deleted text is copied to the clipboard and can be pasted.
+| d{motion}	| Delete the text moved over by {motion} -- same as c{motion}, but doesn't enter insert mode.
 Moving blocks of text efficiently
 
 ### Use visual selections and the appropriate selection mode
 
 Unlike the original vi, vim allows you to highlight text and perform operations on it. There are three main visual selection modes (that is, text highlighting modes). These modes are as follows:
 
-v	Characterwise selection mode. This is the selection mode that most people are used to, so practice with it before trying the others.
-V	Linewise selection mode. Whole lines are always selected. This is better than characterwise mode when you want to copy or move a group of lines.
-<C-V>	Blockwise selection mode. Extremely powerful and available in very few other editors. You can select a rectangular block and any text inside that block will be highlighted.
-All the usual cusor movement keys apply -- so, for instance, vwww would go into visual selection mode and highlight the next three words. Vjj would go into linewise visual selection mode and highlight the current line and the two lines below it.
+| v	| Characterwise selection mode. This is the selection mode that most people are used to, so practice with it before trying the others.
+| V |	Linewise selection mode. Whole lines are always selected. This is better than characterwise mode when you want to copy or move a group of lines.
+| <C-V> |	Blockwise selection mode. Extremely powerful and available in very few other editors. You can select a rectangular block and any text inside that block will be highlighted.
+
+All the usual cusor movement keys apply -- so, for instance, `vwww` would go into visual selection mode and highlight the next three words. `Vjj` would go into linewise visual selection mode and highlight the current line and the two lines below it.
 
 ### Cutting and copying from visual selections
 
 Once you have a highlighted selection, you probably want to do something with it. Some of the more useful commands you can give when an area of text is highlighted:
 
-d	Cut (delete) the highlighted text and put it into the clipboard.
-y	Copy (or yank, which is vim-ese for "copy") the highlighted text into the clipboard.
-c	Cut the highlighted text into the clipboard. This is just like d, except it leaves the editor in insert mode.
+| d	| Cut (delete) the highlighted text and put it into the clipboard.
+| y	| Copy (or yank, which is vim-ese for "copy") the highlighted text into the clipboard.
+| c	| Cut the highlighted text into the clipboard. This is just like d, except it leaves the editor in insert mode.
 Cutting and copying from non-visual selections
 
 If you know exactly what you want to copy or cut, you can do it without entering visual mode. This saves time.
 
-d{motion}	Cut the text moved over by {motion} to the clipboard. For instance, dw would cut a word and dfS would cut from the cursor up to and including the next capital S on the current line of text.
-y{motion}	Copy the text moved over by {motion}.
-c{motion}	Cut the text moved over by {motion} and leave the editor in insert mode.
-dd	Cut the current line.
-yy	Copy the current line.
-cc	Cut the current line and leave the editor in insert mode.
-D	Cut from the cursor to the end of the current line.
-Y	Yank the whole line, just like yy. (Yes, it's inconsistent! You can use y$ to do what you would expect Y to do.)
-C	Cut from the cursor to the end of the current line and leave the editor in insert mode.
-x	Cut the current character. (This is sort of like a command-mode backspace.)
-s	Cut the current character and leave the editor in insert mode.
+| d{motion}	| Cut the text moved over by {motion} to the clipboard. For instance, dw would cut a word and dfS would cut from the cursor up to and including the next capital S on the current line of text.
+| y{motion}	| Copy the text moved over by {motion}.
+| c{motion}	| Cut the text moved over by {motion} and leave the editor in insert mode.
+| dd	    | Cut the current line.
+| yy	    | Copy the current line.
+| cc	    | Cut the current line and leave the editor in insert mode.
+| D	        | Cut from the cursor to the end of the current line.
+| Y	        | Yank the whole line, just like yy. (Yes, it's inconsistent! You can use y$ to do what you would expect Y to do.)
+| C	        | Cut from the cursor to the end of the current line and leave the editor in insert mode.
+| x	        | Cut the current character. (This is sort of like a command-mode backspace.)
+| s	        | Cut the current character and leave the editor in insert mode.
 
 ### Pasting
 
@@ -151,20 +152,22 @@ y3"e; will yank (copy) text from the cursor to the third quotation mark after th
 
 Occasionally, you'll find yourself doing the same thing over and over to blocks of text in your document. vim will let you record an ad-hoc macro to perform the operation.
 
-qregister	Start macro recording into the named register. For instance, qa starts recording and puts the macro into register a.
-q	End recording.
-@register	Replay the macro stored in the named register. For instance, @a replays the macro in register a.
+| qregister	| Start macro recording into the named register. For instance, qa starts recording and puts the macro into register a.
+| q	        | End recording.
+| @register	| Replay the macro stored in the named register. For instance, @a replays the macro in register a.
+
 Keep in mind that macros just record your keystrokes and play them back; they are not magic. Recording macros is almost an art form because there are so many commands that accomplish a given task in vim, and you must carefully select the commands you use while your macro is recording so that they will work in all the places you plan to execute the macro.
 
 ## Writing code in vim
 
 vim is an excellent editor for source code because it has many features that are specifically designed to help programmers. Here are a few of the more handy ones:
 
-]p	Just like p, but it automatically adjusts the indent level of the pasted code to match that of the code you paste into. Try it!
-%	Putting the cursor on a brace, bracket, or parenthese and pressing % will send the cursor to the matching brace, bracket, or parenthese. Great for fixing parse problems related to heavily nested blocks of code or logic.
->>	Indent the highlighted code. (See the earlier section about efficient text selection. If no text is selected, the current line is indented.)
-<<	Like >>, but un-indents.
-gd	Go to the definition (or declaration) of the function or variable under the cursor.
-K	Go to the man page for the word currently under the cursor. (For instance, if your cursor is currently over the word sleep, you will see the man page for sleep displayed.)
+| ]p	| Just like p, but it automatically adjusts the indent level of the pasted code to match that of the code you paste into. Try it!
+| %	    | Putting the cursor on a brace, bracket, or parenthese and pressing % will send the cursor to the matching brace, bracket, or parenthese. Great for fixing parse problems related to heavily nested blocks of code or logic.
+| >>	| Indent the highlighted code. (See the earlier section about efficient text selection. If no text is selected, the current line is indented.)
+| <<	| Like >>, but un-indents.
+| gd	| Go to the definition (or declaration) of the function or variable under the cursor.
+| K	    | Go to the man page for the word currently under the cursor. (For instance, if your cursor is currently over the word sleep, you will see the man page for sleep displayed.)
+
 
 
