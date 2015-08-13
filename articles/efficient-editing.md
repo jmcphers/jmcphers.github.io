@@ -14,7 +14,7 @@ title: Efficient Editing with Vim
 
 This tutorial assumes a basic knowledge of vim -- insert mode, command mode, loading and saving files, etc. It is intended to help vi novices develop their skills so that they can use vi efficiently.
 
-In this tutorial, `<C-X>` means Ctrl-X -- that is, hold down the Ctrl key and press X. You can get help on most of the commands used here by typing `:help command` in vim, where command is what you need help on.
+In this tutorial, `<C-X>` means Ctrl-X -- that is, hold down the `Ctrl` key and press `X`. You can get help on most of the commands used here by typing `:help command` in vim, where command is what you need help on.
 
 ## Moving efficiently
 
@@ -45,6 +45,7 @@ Here are a few of the more useful motions:
 | `)`  | Move the cursor forward to the next sentence. (Useful when editing e-mail or text documents.)
 | `(`  | Move the cursor backward by a sentence.
 
+
 ### Move efficiently through the file
 
 vim has many commands that can send you to where you want to go in your file -- there's rarely a need to scroll manually through it. The below keystrokes are not technically motions, since they move around in the file instead of in a particular line.
@@ -61,9 +62,10 @@ vim has many commands that can send you to where you want to go in your file -- 
 | `#`	    | Same as above, except it moves the cursor to the previous occurance.
 | `/text`	| Starting from the cursor, find the next occurance of the string text and go to it. You will need to press Enter to execute the search. To re-execute your last search, type n (for next occurance).
 | `?text`	| Same as /, but searches in the opposite direction.
-| `ma`	| Make a bookmark named *a* at the current cursor position. A bookmark can be named any lowercase letter. You can't see the bookmark, but it's there!
+| `ma`	    | Make a bookmark named *a* at the current cursor position. A bookmark can be named any lowercase letter. You can't see the bookmark, but it's there!
 | `` `a``	| Go to bookmark *a*. Important: that's a backtick, not a single quote. The backtick is located to the left of the 1 on most keyboards.
 | `` `.``	| Go to the line that you last edited. This is very useful! If you need to scroll through the file to look something up, you can go back to where you were without bookmarking it by using the `` `.`` command.
+
 
 ## Typing efficiently
 
@@ -75,7 +77,7 @@ To use keyword completion, just type the first few letters of the string (e.g. `
 
 ### Enter insert mode intelligently
 
-Most users new to vim get into insert mode by typing i. This works, but it's often pretty inefficient, since vi has a host of commands that leave the editor in insert mode. Here are some of the more popular ones:
+Most users new to vim get into insert mode by typing `i`. This works, but it's often pretty inefficient, since vi has a host of commands that leave the editor in insert mode. Here are some of the more popular ones:
 
 | `i`	        | Insert text to the left of the current character.
 | `I`	        | Insert text at the beginning of the current line.
@@ -83,8 +85,9 @@ Most users new to vim get into insert mode by typing i. This works, but it's oft
 | `A`	        | Insert text at the end of the current line.
 | `o`	        | Create a new line under the current one and insert text there.
 | `O`	        | Create a new line above the current one and insert text there.
-| `c{motion}`	| Delete (change) the text moved over by {motion} and insert text to replace it. For instance, c$ would delete the text from the cursor to the end of the line and enter insert mode. ct! would delete the text from the cursor up to (but not including) the next exclamation mark and enter insert mode. The deleted text is copied to the clipboard and can be pasted.
+| `c{motion}`	| Delete (change) the text moved over by {motion} and insert text to replace it. For instance, `c$` would delete the text from the cursor to the end of the line and enter insert mode. `ct!` would delete the text from the cursor up to (but not including) the next exclamation mark and enter insert mode. The deleted text is copied to the clipboard and can be pasted.
 | `d{motion}`	| Delete the text moved over by {motion} -- same as `c{motion}`, but doesn't enter insert mode.
+
 
 ## Moving blocks of text efficiently
 
