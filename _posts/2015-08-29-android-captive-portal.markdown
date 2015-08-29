@@ -10,7 +10,7 @@ was distributed at the lobby.
 
 "Just connect to the network `attwifi` and enter the code," the brochure said.
 
-The network had a (captive portal)[https://en.wikipedia.org/wiki/Captive_portal],
+The network had a [captive portal](https://en.wikipedia.org/wiki/Captive_portal),
 a page you had to open to enter your code before your device would be allowed
 to use the Internet. 
 
