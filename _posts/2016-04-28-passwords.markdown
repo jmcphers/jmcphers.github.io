@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Password Management"
-date:   2015-04-28 12:32:32
+date:   2016-04-28 12:32:32
 categories: security
 ---
 
@@ -13,17 +13,17 @@ Everyone has their own way of managing the dozens of passwords they need to sign
 
 These are my own requirements for a password management system. Yours may be different.
 
-1. The software components of the system must be open source, to ensure that the system does not contain hidden backdoors, and to guarantee the longevity of a system. Password management systems which rely on closed source or proprietary software are only as trustworthy and long-lived as the corporations which own them.
+1. The software components of the system must be *open source*, to ensure that the system does not contain hidden backdoors, and to guarantee the longevity of a system. Password management systems which rely on closed source or proprietary software are only as trustworthy and long-lived as the corporations which own them.
 
-1. The system must be able to survive a catastrophic loss of equipment; for instance, a fire which destroys everything in my home should not also render me unable to access my online accounts.
+1. The system must be able to survive a *catastrophic loss of equipment*; for instance, a fire which destroys everything in my home should not also render me unable to access my online accounts.
 
-1. The system must be extremely difficult to compromise, even if an attacker has access to the encrypted data containing the passwords.
+1. The system must be *extremely difficult to compromise*, even if an attacker has access to the encrypted data containing the passwords.
 
-1. The system must be accessible from multiple devices and operating systems.
+1. The system must be *accessible from multiple devices* and operating systems.
 
-1. The system must not have a single point of failure. It should never be possible for the disclosure of a single piece of information, or the failure of a single piece of hardware, to render the system insecure or unusable. 
+1. The system must not have a *single point of failure*. It should never be possible for the disclosure of a single piece of information, or the failure of a single piece of hardware, to render the system insecure or unusable. 
 
-1. The system must be able to meet the password requirements of many different services: for instance, some require special characters while others do not allow them, others require that a password be changed every N months to a new password, etc. 
+1. The system must be able to meet the *password requirements of many different services*: for instance, some require special characters while others do not allow them, others require that a password be changed every N months to a new password, etc. 
 
 ## Implementation
 
