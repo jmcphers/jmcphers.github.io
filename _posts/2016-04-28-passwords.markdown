@@ -9,21 +9,31 @@ categories: security
 
 Everyone has their own way of managing the dozens of passwords they need to sign on to online services. Some people use the same password everywhere. Others use sticky notes or a notepad shoved into a desk drawer. If you're technically inclined, you might use a password manager. I've been using the same password management system for almost half a decade now, and I've been very pleased with it. I'm publishing it here in hopes it will be helpful to others.
 
+## For the Non-Technical
+
+I fully admit that my system is a little on the paranoid side. For the average user who just wants to improve their security, here's what I usually recommend, in descending order of value:
+
+1. If you do nothing else, make a very good e-mail password and never use it on any other account. Your e-mail account is almost as good as a skeleton key. It can be used to reset your password on almost all of your other accounts. That means that if you use your e-mail password on another site, and that site's passwords are stolen, whoever gets the password may also be able to hack into your e-mail account. [And that will be very, very bad](http://www.theatlantic.com/magazine/archive/2011/11/hacked/308673/?single_page=true).
+
+1. If you already have a good e-mail password, turn own two-factor authentication for your e-mail account, to give it an extra layer of security. Two-factor authentication (sometimes abbreviated by well-meaning nerds as 2FA) just means you need something besides your password to log in. Usually that something is a code you see on your phone that changes every 30 seconds (making it useless even if captured by an attacker).
+
+1. Do not compose a password from personal information. In addition to being easier to guess, these kinds of passwords have statistical characteristics that make them easier to crack. For instance, a year is considerably easier to crack than a random 4-digit number since most 4-digit numbers do not represent a recent year.
+
 ## Requirements
 
 These are my own requirements for a password management system. Yours may be different.
 
-1. The software components of the system must be *open source*, to ensure that the system does not contain hidden backdoors, and to guarantee the longevity of a system. Password management systems which rely on closed source or proprietary software are only as trustworthy and long-lived as the corporations which own them.
+1. The software components of the system must be *open source*, to ensure that the system does not contain hidden backdoors, and to guarantee the longevity of a system. Password management systems which rely on closed source or proprietary software are only as trustworthy and long-lived as the corporations which own them. Unfortunately, this rules out the most popular software, including [1Password](https://agilebits.com/) and [LastPass](https://lastpass.com/).
 
 1. The system must be able to survive a *catastrophic loss of equipment*; for instance, a fire which destroys everything in my home should not also render me unable to access my online accounts.
 
 1. The system must be *extremely difficult to compromise*, even if an attacker has access to the encrypted data containing the passwords.
 
-1. The system must be *accessible from multiple devices* and operating systems.
+1. The system must be *accessible from multiple devices* and operating systems. For me that's a desktop, a laptop, and a mobile phone.
 
 1. The system must not have a *single point of failure*. It should never be possible for the disclosure of a single piece of information, or the failure of a single piece of hardware, to render the system insecure or unusable. 
 
-1. The system must be able to meet the *password requirements of many different services*: for instance, some require special characters while others do not allow them, others require that a password be changed every N months to a new password, etc. 
+1. The system must be able to meet the *password requirements of many different services*: for instance, some require special characters while others do not allow them, others require that a password be changed every N months to a new password, etc. There are many stateless password management systems which are able to work without storing any passwords at all; they derive a password from some secret information combined in a known way with the site or service. Unfortunately these invariably are unable to produces passwords which meet the requirements of every service (which are often mutually exclusive), which means you have to remember how you modified the password to meet the service's requirements--a difficult task for rarely used services. Even if they were able to produce passwords which met requirements, they leave you unable to change your password if it expires or is compromised. 
 
 ## Implementation
 
