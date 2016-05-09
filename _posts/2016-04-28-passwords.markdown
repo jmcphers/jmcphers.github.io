@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Password Management"
-date:   2016-04-28 12:32:32
+date:   2016-05-08 12:32:32
 categories: security
 ---
 
@@ -17,13 +17,17 @@ I fully admit that my system is a little on the paranoid side. For the average u
 
 1. If you already have a good e-mail password, turn own two-factor authentication for your e-mail account, to give it an extra layer of security. Two-factor authentication (sometimes abbreviated by well-meaning nerds as 2FA) just means you need something besides your password to log in. Usually that something is a code you see on your phone that changes every 30 seconds (making it useless even if captured by an attacker).
 
-1. Do not compose a password from personal information. In addition to being easier to guess, these kinds of passwords have statistical characteristics that make them easier to crack. For instance, a year is considerably easier to crack than a random 4-digit number since most 4-digit numbers do not represent a recent year.
+1. If you've already got a good e-mail password, change your passwords so they don't contain personal information. In addition to being easier to guess, these kinds of passwords have statistical characteristics that make them easier to crack. For instance, a year is considerably easier to crack than a random 4-digit number since most 4-digit numbers do not represent a recent year. Many passwords are even "pre-cracked" in [rainbow tables](https://en.wikipedia.org/wiki/Rainbow_table), requiring almost no effort at all for an attacker to defeat. 
+
+1. If you're already avoiding personal information, go one step further and choose nonsense for your password. You don't even need a computer to make a good nonsense password; [Diceware](http://world.std.com/~reinhold/diceware.html) is one method which doesn't require you to use one at all. A password containing a few random words is actually much more secure than the shorter jumble of letters and numbers you've been taught is secure (there is a comic later in this post which explains the math).
+
+1. If you already use strong passwords, and don't share them among sites, you probably forget them from time to time. And that's where a password management system comes in.
 
 ## Requirements
 
 These are my own requirements for a password management system. Yours may be different.
 
-1. The software components of the system must be *open source*, to ensure that the system does not contain hidden backdoors, and to guarantee the longevity of a system. Password management systems which rely on closed source or proprietary software are only as trustworthy and long-lived as the corporations which own them. Unfortunately, this rules out the most popular software, including [1Password](https://agilebits.com/) and [LastPass](https://lastpass.com/).
+1. The software components of the system must be *open source*, to ensure that the system does not contain hidden backdoors, and to guarantee the longevity of a system. Password management systems which rely on closed source or proprietary software are only as trustworthy and long-lived as the corporations which own them. Unfortunately, this rules out the most popular password management services, including [1Password](https://agilebits.com/) and [LastPass](https://lastpass.com/). (Many intelligent, security-minded people have no problem trusting these corporations with all their passwords. This post isn't a dig at them, I'm just a little more paranoid.)
 
 1. The system must be able to survive a *catastrophic loss of equipment*; for instance, a fire which destroys everything in my home should not also render me unable to access my online accounts.
 
