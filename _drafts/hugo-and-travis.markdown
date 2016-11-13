@@ -66,13 +66,56 @@ This is arguably the toughest part of the job. Since your Github repo is public,
 
 First, run this command in your terminal:
 
-    ssh-keygen -t rsa -b 2048 -C "yourproject@travis-ci.org"
+    ssh-keygen -t rsa -b 2048 -N "" -f myproject -C "myproject@travis-ci.org"
 
-This means "make me a new 2048-byte RSA keypair, and call it *yourproject@travis-ci.org*". 
+The options are interpreted as follows:
+
++------------------+--------------------------------+
+| `-t rsa -b 2048` | Create a 2048-byte RSA keypair |
+| `-N ""`          | Do not protect the keypair with a passphrase. This is usually regarded as a bad idea, but it's unavoidable here since we'd have to give the passphrase to Travis CI anyway.  |
+| `-f myproject`   | Save the private key as `myproject`, and the public key as `myproject.pub` |
+| `-C myproject@travis-ci.org` | Add this comment to the key (helps to identify it) |
++------------------+--------------------------------+
+
+You'll see some output that looks something like this: 
+
+    Generating public/private rsa key pair.
+    Your identification has been saved in myproject.
+    Your public key has been saved in myproject.pub.
+    The key fingerprint is:
+    46:fd:17:b8:ba:09:7c:0f:fc:ad:80:91:0d:fe:8b:f5 myproject@travis-ci.org
+    The key's randomart image is:
+    +--[ RSA 2048]----+
+    |                 |
+    |         .   .   |
+    |        o . . .  |
+    |       o + . . . |
+    |        S . o .  |
+    |       o = . .   |
+    |        + O      |
+    |         = X .   |
+    |        . + E..  |
+    +-----------------+
 
 **Copy the public key to your web host**
 
+When you run the above command, it will make two files: a private key and a public key, which has the extension `.pub`. We're going to put the public key on your web host. Open the `.pub` file, and copy its contents to the clipboard. They will look something like this:
+
+    ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDqyEaRQzO0F1GKdPvs4q0lXtQ+YWewtIW1m...
+
+Now, open a shell on your web host, as the user who has permissions to write files to the directory hosting the site. Edit the file `~/.ssh/authorized_keys` (create it if it doesn't exist), and paste the contents of the public key on the end of it. One easy way to do this from a Unix shell is to run this command:
+
+    $ cat >> authorized_keys
+    <press paste>
+    <press Ctrl+D>
+
+Of course, if you're an old hand at this you probably know that there are easier ways to do this depending on the hosts involved (such as [ssh-copy-id](https://linux.die.net/man/1/ssh-copy-id)).
+
+Also, I'd be remiss if I didn't point out that you should *never* do this for a user who is highly privileged on your web host, as you want to limit the damage if the key somehow falls into the wrong hands. If needed, create a user who has only permissions to write the directory containing your web site. 
+
 **Encrypt the private key for Travis**
+
+Now, we definitely don't want that private key to ever touch Github, but we need Travis CI to use it, so the next thing we're going to do is encrypt it. 
 
 ### Step 4: Set up your Travis deployment script
 
@@ -106,4 +149,11 @@ Note that `.travis.yml` also supports a `deploy` target which has built-in capab
 ### Step 5: Profit
 
 Once you've pushed your `.travis.yml` file, you're in business. 
+
+Of course, you can edit the site locally if you like, but you can also edit it directly on Github. Just browse to any file in the site on Github and click the pencil icon in the upper right corner:
+
+![Edit this file](/img/github-edit-file.png)
+
+This will being up the file in a convenient little text editor. It's no substitute for a full-bore local development environment, but for making quick, drive-by updates for content, it'll do in a pinch, especially if you're not at your own computer.
+
 
