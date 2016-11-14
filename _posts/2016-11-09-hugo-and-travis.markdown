@@ -5,11 +5,13 @@ date:   2016-11-09
 categories: hugo, web development
 ---
 
-As an occasional web developer, I used to build sites with Wordpress, but have recently become enamored with static site generators. There's just something ineffably elegant about having the site pre-built. There's no code on the web server to break, or patch, or hack. There's no server configuration to screw up. Static sites just Exist, in pristine immutability. 
+As an occasional web developer, I used to build sites with Wordpress, but have recently become enamored with static site generators. There's just something ineffably elegant about having the site pre-built. 
+
+There's no code on the web server to break, or patch, or hack. There's no server configuration to screw up. Static sites just Exist, in pristine immutability. 
 
 Even better, a static site is usually constructed with plain text files, which means you can use version control systems like Git to manage your content. Want to experiment with an alternate version of the site without messing up the copy everyone sees? Or be able to roll back to any point in time? Or have a transparent log showing exactly who changed what and when? All of these capabilities and more, often implemented with varying degrees of success by big content management systems, are supported with simplicity and elegance by version control systems.
 
-One big drawback to static sites, though, is that in order to *change* them, you have to *rebuild them*. This brings about the dreary requirement of having to *install and run software on a computer* in order to update your site. Even if it's not particularly needy software, it's a huge hurdle, especially compared to the convenience of updating content quickly, through a web interface, on any computer offered by Wordpress and friends.
+One big drawback to static sites, though, is that in order to *change* them, you have to *rebuild them*. This brings about the dreary requirement of having to *install and run software on a computer* in order to update your site. Even if it's not particularly needy software, it's a huge hurdle, especially compared to the convenience of updating content quickly through a web interface.
 
 This will not do. 
 
@@ -70,12 +72,10 @@ First, run this command in your terminal:
 
 The options are interpreted as follows:
 
-+------------------+--------------------------------+
 | `-t rsa -b 2048` | Create a 2048-byte RSA keypair |
 | `-N ""`          | Do not protect the keypair with a passphrase. This is usually regarded as a bad idea, but it's unavoidable here since we'd have to give the passphrase to Travis CI anyway.  |
 | `-f myproject`   | Save the private key as `myproject`, and the public key as `myproject.pub` |
 | `-C myproject@travis-ci.org` | Add this comment to the key (helps to identify it) |
-+------------------+--------------------------------+
 
 You'll see some output that looks something like this: 
 
@@ -160,6 +160,6 @@ Of course, you can edit the site locally if you like, but you can also edit it d
 
 ![Edit this file](/img/github-edit-file.png)
 
-This will being up the file in a convenient little text editor. It's no substitute for a full-bore local development environment, but for making quick, drive-by updates for content, it'll do in a pinch, especially if you're not at your own computer.
+This will bring up the file in a convenient little text editor. It's no substitute for a full-bore local development environment, but for making quick, drive-by updates for content, it'll do in a pinch, especially if you're not at your own computer.
 
 
