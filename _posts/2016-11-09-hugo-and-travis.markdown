@@ -115,13 +115,19 @@ Also, I'd be remiss if I didn't point out that you should *never* do this for a 
 
 **Encrypt the private key for Travis**
 
-Now, we definitely don't want that private key to ever touch Github, but we need Travis CI to use it, so the next thing we're going to do is encrypt it. 
+Now, we definitely don't want that private key to ever touch Github, but we need Travis CI to use it, so the next thing we're going to do is encrypt it. The Travis command-line interface can be used to do this:
+
+    $ travis encrypt myproject
+
+For more information, read the [Travis encrypt-file documentation](https://docs.travis-ci.com/user/encrypting-files/).
+
+This will generate a file named `myproject.enc` which contains the encrypted copy of the private key. You can just delete the `myproject` key now, and commit the public key and the encrypted private key into your repro.
 
 ### Step 4: Set up your Travis deployment script
 
 Travis uses a special file called `.travis.yml` for build instructions. We need to tell it how to build your site. Because Travis uses a containerized build system, we'll have to give it instructions for building your site from scratch. 
 
-The first thing we need to do is **decrypt the private key**, and set its permissions correctly.
+The first thing we need to do is **decrypt the private key**, and set its permissions correctly. The code for the `openssl` command will be emitted by `travis encrypt` above (so don't copy and paste this part!):
 
     before_install:
       - openssl aes-256-cbc -K $encrypted_3d83f42c7c33_key -iv $encrypted_3d83f42c7c33_iv -in kingsgate5-travis.enc -out kingsgate5-travis -d
