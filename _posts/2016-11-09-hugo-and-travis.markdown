@@ -2,7 +2,7 @@
 layout: post
 title:  "Deploying Hugo with Travis CI"
 date:   2016-11-09
-categories: hugo, web development
+categories: hugo web development
 ---
 
 As an occasional web developer, I used to build sites with Wordpress, but have recently become enamored with static site generators. There's just something ineffably elegant about having the site pre-built. 
