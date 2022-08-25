@@ -26,7 +26,7 @@ jobs:
           extended: true
 
       - name: Build
-        run: hugo --minify --theme=emm386
+        run: hugo --minify --theme=emm386Year
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
