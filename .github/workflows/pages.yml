@@ -51,8 +51,7 @@ jobs:
         run: |
           hugo \
             --minify \
-            --theme=emm386 \
-            --baseURL ${{ steps.pages.outputs.base_url }}
+            --theme=emm386
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
