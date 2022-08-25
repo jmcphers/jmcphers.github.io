@@ -1,4 +1,4 @@
-<p>Recently, I was investigating a JavaScript bug in which an array serialized differently when it was created in another window. Let&rsquo;s say <code>foo</code> is an array created in this window, and <code>bar</code> is an array created in another window.</p><pre><code>&gt; var foo = [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;]
+<!doctype html><html lang=en-us><head><meta charset=utf-8><title>JavaScript: When an Array isn't an Array</title><link rel=stylesheet type=text/css href=https://jmcphers.github.io//css/emm386.css></head><body><div class=container><h1>JavaScript: When an Array isn't an Array</h1><p>Recently, I was investigating a JavaScript bug in which an array serialized differently when it was created in another window. Let&rsquo;s say <code>foo</code> is an array created in this window, and <code>bar</code> is an array created in another window.</p><pre><code>&gt; var foo = [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;]
 &gt; var bar = window.opener.foo;
 </code></pre><p>Now, let&rsquo;s try to serialize them. (<code>serialize</code> is not a real method, but it illustrates the problem.)</p><pre><code>&gt; foo
 [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;]
@@ -23,4 +23,4 @@ true
 
 &gt; Object.prototype.toString.call(bar) == '[object Array]'
 true
-</code></pre><p>Newer browsers have <code>Array.isArray</code>, so there&rsquo;s that, and <a href=http://stackoverflow.com/questions/4775722/check-if-object-is-array>this StackOverflow question</a> provides twenty different ugly and inelegant ways to determine whether an object is an array, which is a more eloquent argument than I could ever give for the complete brokenness of this particular feature of the language.</p>
+</code></pre><p>Newer browsers have <code>Array.isArray</code>, so there&rsquo;s that, and <a href=http://stackoverflow.com/questions/4775722/check-if-object-is-array>this StackOverflow question</a> provides twenty different ugly and inelegant ways to determine whether an object is an array, which is a more eloquent argument than I could ever give for the complete brokenness of this particular feature of the language.</p><p class=footer>copyright &copy; 2022 Jonathan McPherson</p></div></body></html>
