@@ -1,9 +1,22 @@
 {{ partial "header.html" . }}
-<h1>hello world</h1>
+<code>&gt; whoami</code>
+<h1 class="username">jmcphers</h1>
+
+<p> 
+Hi, I'm Jonathan. I am a software engineer, currently at <a href="https://posit.co/">Posit</a>, and this is my software engineering blog.</p>
+
+<p>You can also find me on <a href="https://twitter.com/jmcphers">Twitter</a>, <a href="https://www.linkedin.com/in/jonathanmcpherson/">LinkedIn</a>, and <a href="https://github.com/jmcphers/">Github</a>.
+</p>
+
+<h1>blog</h1>
 
 {{ range (where .Site.RegularPages "Type" "blog") }}
 
-<li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
+<p class="bloglink">
+<span class="date">{{ .Date.Format "2006-01-02" }}</span>
+&nbsp;
+<a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
+</p>
 
 {{ end }}
 
