@@ -1,7 +1,10 @@
+{{ partial "header.html" . }}
 <h1>hello world</h1>
 
 {{ range (where .Site.RegularPages "Type" "blog") }}
 
-<li>{{ .Title }} </li>
+<li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
 
 {{ end }}
+
+{{ partial "footer.html" . }}
