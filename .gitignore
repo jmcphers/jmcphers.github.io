@@ -1,3 +1,4 @@
 _site
 tags
 .sass-cache
+.hugo_build.lock
