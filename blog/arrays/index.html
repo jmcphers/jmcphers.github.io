@@ -1,0 +1,26 @@
+<p>Recently, I was investigating a JavaScript bug in which an array serialized differently when it was created in another window. Let&rsquo;s say <code>foo</code> is an array created in this window, and <code>bar</code> is an array created in another window.</p><pre><code>&gt; var foo = [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;]
+&gt; var bar = window.opener.foo;
+</code></pre><p>Now, let&rsquo;s try to serialize them. (<code>serialize</code> is not a real method, but it illustrates the problem.)</p><pre><code>&gt; foo
+[&quot;a&quot;, &quot;b&quot;, &quot;c&quot;]
+
+&gt; serialize(foo)
+&quot;['a', 'b', 'c']&quot;
+
+&gt; bar
+[&quot;a&quot;, &quot;b&quot;, &quot;c&quot;]
+
+&gt; serialize(bar)
+
+&quot;{'0': 'a', '1': 'b', '2': 'c'}&quot;
+</code></pre><p>Wait, what? How could two ostensibly identical objects serialize differently? Here&rsquo;s another clue:</p><pre><code>&gt; foo instanceof Array
+true
+&gt; bar instanceof Array
+false
+</code></pre><p>Now, how is it possible that <code>bar</code> isn&rsquo;t an array? It sure <em>looks</em> like an array, doesn&rsquo;t it?</p><p>It turns out that the <code>Array</code> object in JavaScript is not a global construct but is <em>window-local</em>. So when you type this:</p><pre><code>&gt; bar instanceof Array
+</code></pre><p>You&rsquo;re actually asking not &ldquo;is <code>bar</code> an array?&rdquo; but &ldquo;is <code>bar</code> an instance of <strong>this window&rsquo;s</strong> <code>Array</code> class?&rdquo;, to which the answer is <code>false</code>.</p><p>Great. Thanks JavaScript. That&rsquo;s really straightforward.</p><p>So &ndash; how exactly does one determine if an object is an array, regardless of where it comes from?</p><p>The answer comes from none other than <a href=https://en.wikipedia.org/wiki/Douglas_Crockford>Douglas Crockford</a>, in his article <a href=http://javascript.crockford.com/remedial.html>Remedial Javascript</a>:</p><pre><code>Object.prototype.toString.call(value) == '[object Array]'
+</code></pre><p>Yes, I&rsquo;m not kidding. That is the only reliable way to see whether a JavaScript object is an array. Let&rsquo;s try it:</p><pre><code>&gt; Object.prototype.toString.call(foo) == '[object Array]'
+true
+
+&gt; Object.prototype.toString.call(bar) == '[object Array]'
+true
+</code></pre><p>Newer browsers have <code>Array.isArray</code>, so there&rsquo;s that, and <a href=http://stackoverflow.com/questions/4775722/check-if-object-is-array>this StackOverflow question</a> provides twenty different ugly and inelegant ways to determine whether an object is an array, which is a more eloquent argument than I could ever give for the complete brokenness of this particular feature of the language.</p>

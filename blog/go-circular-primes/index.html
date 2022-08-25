@@ -1,0 +1,91 @@
+<p>Recently a friend of mine posted the following programming challenge, which
+he&rsquo;d received as an interview question.</p><blockquote><p>A number is called a circular prime if it is prime and all of its rotations are primes.</p><p>For example the number 197 has two rotations: 971, and 719. Both of them are prime.</p><p>There are thirteen such primes below 100: 2, 3, 5, 7, 11, 13, 17, 31, 37, 71, 73, 79, and 97.</p><p>How many circular primes are there below N?
+1 &lt;= N &lt;= 1000000</p><p>Test Cases:</p><p>There are 0 circular primes below 1.
+There are 4 circular primes below 10.
+There are 13 circular primes below 100.
+There are 25 circular primes below 1000.</p></blockquote><p>Several solutions were posted but none were very fast. To solve the problem efficiently, it&rsquo;s helpful to break it down into smaller pieces:</p><ol><li>How can we efficiently discover all the primes beneath 1,000,000?</li><li>How can we efficiently test a prime to see if it&rsquo;s <em>circular</em>?</li></ol><h1 id=finding-primes>Finding Primes</h1><p>The most common method for finding primes is using trial division. To determine if a number <em>x</em> is prime, you divide it by all the numbers from <em>2 - sqrt(x)</em>. If it divides evenly by any of these, the number is not prime.</p><p>This isn&rsquo;t a bad way to test a <em>single</em> number for primality (though there are of course much faster, and more sophisticated, tests). However, it&rsquo;s a bad way to generate all the primes from 0 to <em>N</em>, due to the number of trial divisions involved.</p><p>Is there a faster way?</p><h2 id=the-sieve-of-erostothanes>The Sieve of Erostothanes</h2><p>There is, and it&rsquo;s one of the oldest ways of finding primes. It works like this:</p><ol><li>Write down all the numbers <em>1 &mldr; N</em></li><li>Cross out every 2nd number after 2</li><li>Cross out every 3rd number after 3</li><li>Cross out every 4th number after 4</li><li>Continue until <em>sqrt(N)</em></li></ol><p>For instance, let&rsquo;s find all the primes &lt;= 16. First, all the numbers:</p><pre><code> 1  2  3  4
+ 5  6  7  8
+ 9 10 11 12
+13 14 15 16
+</code></pre><p>Then, every 2nd number after 2&mldr;</p><pre><code> 1  2  3  _ 
+ 5  _  7  _
+ 9 __ 11 __
+13 __ 15 __
+</code></pre><p>Then, every 3rd number after 3..</p><pre><code> 1  2  3  _ 
+ 5  _  7  _
+ _ __ 11 __
+13 __ __ __
+</code></pre><p>and every 4th number after 4 (no change). Now we&rsquo;ve got a tidy list of the primes &lt;= 16: 1, 2, 3, 5, 7, 11, and 13.</p><p>This is not faster than trial division for any given number (you still need to do work for all <em>&lt; sqrt(N)</em> beneath it) but it reduces dramatically the work needed over the range of numbers. You can see why intuitively: for instance, instead of performing an operation on every number <em>1 &mldr; N</em> to see if it&rsquo;s divisible by 5, we perform an operation on every 5th number.</p><p>In Go, we can do this pretty simply with a <code>bool</code> array of numbers. We&rsquo;ll assume everything is prime, and &ldquo;cross it off&rdquo; (mark it false) as we go.</p><p>{% highlight go %}
+// performs the &ldquo;sieve of Erostothanes&rdquo; for a single number
+func sieve(num int64, primes []bool) {
+for i := num * 2; i &lt; int64(len(primes)); i += num {
+primes[i] = false
+}
+}</p><p>// make an array and mark all numbers &ldquo;prime&rdquo;
+num, _ := strconv.ParseFloat(os.Args[1], 10)
+primes := make([]bool, int64(num))
+for i := range primes {
+primes[i] = true
+}</p><p>// mark all non-prime numbers
+for i := 2; i &lt;= int(math.Sqrt(num)); i++ {
+sieve(int64(i), primes)
+}
+{% endhighlight %}</p><h1 id=testing-rotations>Testing Rotations</h1><p>Once we&rsquo;ve got our list of primes, we need to check each one to see if it&rsquo;s a <em>circular</em> prime. What&rsquo;s a fast way to generate each of its rotations?</p><p>One way would be to convert the number into a string, put its last character first, and then turn it back into a number, e.g.</p><pre><code>1234 =&gt; &quot;1234&quot; =&gt; &quot;4123&quot; =&gt; 4123 
+</code></pre><p>But consider the number of operations required to do this: if implemented naively, it&rsquo;s probably going to cost us at least one memory allocation (for the string), plus the time to parse/deparse the decimal representation.</p><p>Computers are very fast at math, so let&rsquo;s see if we can do this entirely with math. For some number N:</p><ol><li>Extract the last digit: <em>m = N mod 10</em></li><li>Multiply that digit by 10 if <em>N &lt; 100</em>, 100 if <em>N &lt; 1000</em>, etc: <em>floor(log10(N)) ^ 10</em></li><li>Add the rest of the number, less the last digit: <em>m + floor(N / 10)</em></li></ol><p>Let&rsquo;s try it:</p><ol><li>Extract the last digit: <em>1234 mod 10 = 4</em></li><li>Multiply: <em>floor(log10(N)) ^ 10 = 4000</em></li><li>Add the rest of the number: <em>4000 + floor(1234/10) = 4123</em></li></ol><p>Okay, now we can wrap it up a nice Go function:</p><p>{% highlight go %}
+func rotate(i float64) float64 {
+return math.Mod(i, 10)*(math.Pow(10, math.Floor(math.Log10(i)))) + math.Floor(i/10)
+}
+{% endhighlight %}</p><h1 id=putting-it-together>Putting it Together</h1><p>Now all we need to do is:</p><ol><li>Loop through each of the primes</li><li>Check its rotations (one per digit)</li></ol><p>{% highlight go %}
+for i := range primes {
+if i > 1 && primes[i] {
+// this prime might be circular
+candidate := float64(i)
+ok := true</p><pre><code>	// check all its rotations (1 rotation for 2-digit numbers,
+	// 2 rotations for 3-digit numbers, etc.)
+	var rotations = int(math.Floor(math.Log10(float64(i))))
+	var primerotations = 0
+	for j := 0; j &lt; rotations; j++ {
+		candidate = rotate(candidate)
+		if (candidate &lt; num) &amp;&amp; !primes[int(candidate)] {
+			// this rotation is not prime
+			ok = false
+			break
+		} else if candidate &lt; num &amp;&amp; candidate != float64(i) {
+			// this rotation is prime, so mark the prime as visited
+			primes[int(candidate)] = false
+			primerotations++
+		}
+	}
+
+	// if all rotation were prime, output the number
+	if ok {
+		// count the number and all its rotations as circular primes
+		circularprimes += (1 + primerotations)
+	}
+}
+</code></pre><p>}
+{% endhighlight %}</p><p>Let&rsquo;s try it (you can find the full source code <a href=https://github.com/jmcphers/circularprimes>here</a>):</p><pre><code>$ ./circularprimes 1000000
+2
+3
+5
+7
+11
+13, 31
+17, 71
+37, 73
+79, 97
+113, 311, 131
+197, 719, 971
+199, 919, 991
+337, 733, 373
+1193, 3119, 9311, 1931
+3779, 9377, 7937, 7793
+11939, 91193, 39119, 93911, 19391
+19937, 71993, 37199, 93719, 99371
+193939, 919393, 391939, 939193, 393919, 939391
+199933, 319993, 331999, 933199, 993319, 999331
+found 55 primes
+</code></pre><p>And how&rsquo;d we do on performance?</p><pre><code>real    0m0.055s
+user    0m0.050s
+sys     0m0.003s
+</code></pre><p>That&rsquo;s 1/20th of a second to find all the primes under 1 million <em>and</em> test each for circularity. Not too bad.</p><h1 id=final-notes>Final notes</h1><p>This is a good example of how low-overhead Go is, but it doesn&rsquo;t really use any of Go&rsquo;s unique features in its implementation. If you wanted to do that, one useful trick would be to take advantage of the fact that the Sieve of Erostothane is extremely easy to parallelize, and Go has good concurrency primitives.</p><p>Here&rsquo;s a <a href=https://golang.org/doc/play/sieve.go>concurrent prime sieve</a> written in Go for reference.</p>
