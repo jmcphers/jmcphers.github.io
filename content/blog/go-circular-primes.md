@@ -74,7 +74,7 @@ This is not faster than trial division for any given number (you still need to d
 
 In Go, we can do this pretty simply with a `bool` array of numbers. We'll assume everything is prime, and "cross it off" (mark it false) as we go.
 
-{% highlight go %}
+```go
 // performs the "sieve of Erostothanes" for a single number
 func sieve(num int64, primes []bool) {
 	for i := num * 2; i < int64(len(primes)); i += num {
@@ -93,7 +93,7 @@ for i := range primes {
 for i := 2; i <= int(math.Sqrt(num)); i++ {
     sieve(int64(i), primes)
 }
-{% endhighlight %}
+```
 
 # Testing Rotations
 
@@ -119,11 +119,11 @@ Let's try it:
 
 Okay, now we can wrap it up a nice Go function:
 
-{% highlight go %}
+```go
 func rotate(i float64) float64 {
 	return math.Mod(i, 10)*(math.Pow(10, math.Floor(math.Log10(i)))) + math.Floor(i/10)
 }
-{% endhighlight %}
+```
 
 # Putting it Together
 
@@ -132,7 +132,7 @@ Now all we need to do is:
 1. Loop through each of the primes
 2. Check its rotations (one per digit)
 
-{% highlight go %}
+```go
 for i := range primes {
 	if i > 1 && primes[i] {
 		// this prime might be circular
@@ -163,7 +163,7 @@ for i := range primes {
 		}
 	}
 }
-{% endhighlight %}
+```
 
 Let's try it (you can find the full source code [here](https://github.com/jmcphers/circularprimes)):
 
