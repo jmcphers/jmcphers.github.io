@@ -32,11 +32,13 @@ It uses a 3rd-party service, though, and so both machines have to be connected t
 
 For small-ish files, an elegant approach is to use OpenSSL and the clipboard of the system connected to both hosts. You'll find OpenSSL on almost every macOS and Linux base system, so you almost certainly won't have to install it.
 
-Here's how:
+Here's how to copy any small file from one host to another:
 
 ### Base64 Encode on Source
 
-Let's say we've got a file called `foo.bin` we'd like to transfer between hosts. First, we ask OpenSSL to encode the file using [Base64](https://en.wikipedia.org/wiki/Base64). Note that this does not *encrypt* the file's contents; it just turns them into plain text you can copy and paste. It'll look like a whole bunch of garbage. That's what it's supposed to look like.
+Let's say we've got a file called `foo.bin` we'd like to transfer between hosts. 
+
+First, we ask OpenSSL to encode the file using [Base64](https://en.wikipedia.org/wiki/Base64). Note that this does not *encrypt* the file's contents; it just turns them into plain text you can copy and paste. It'll look like a whole bunch of garbage. That's what it's supposed to look like.
 
 ```
 $ openssl base64 -in foo.bin
@@ -59,6 +61,6 @@ $ openssl base64 -out foo.bin -d << EOF
 EOF
 ```
 
-Press `Enter`, and *ta-da* -- the file will magically appear on the target, byte for byte identical with the original. You can `md5sum` them both if you're 
+Press `Enter`, and *ta-da* -- the file will magically appear on the target, byte for byte identical with the original. You can `md5sum` or `sha256sum` them both if you're feeling nervous about whether you did it right -- but you probably did, because you are *good at this*. 
 
 
