@@ -1,5 +1,7 @@
 body {
     font-family: Helvetica, sans-serif;
+    color: #111111;
+    background-color: #fffff8;
 }
 
 a {
@@ -35,4 +37,11 @@ h1, h2, h3, h4, h5, h6 {
 .footer {
     margin-top: 30px;
     font-size: x-small;
+}
+
+pre {
+    background-color: #202020;
+    color: #F0F0F0;
+    padding: 10px;
+    border-radius: 5px;
 }
