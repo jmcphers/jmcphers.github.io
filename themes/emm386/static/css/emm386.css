@@ -4,6 +4,10 @@ body {
     background-color: #fffff8;
 }
 
+pre, code {
+    font-family: Menlo, Consolas;
+}
+
 a {
     text-decoration: none;
 }
