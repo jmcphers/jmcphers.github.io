@@ -107,6 +107,18 @@ pre {
         background-color: #151515;
         color: #ddd;
     }
+
+    a {
+        color: #aaa;
+    }
+
+    a:hover {
+        color: #111111;
+    }
+
+    pre {
+        border: 1px solid #ddd;
+    }
 }
 
 h1 {
