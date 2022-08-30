@@ -26,7 +26,7 @@ When you allocate memory in a computer program, it usually gets allocated in one
 ```
 The "C Stack" is just the stack created by programs written in the computer language C, which includes R itself.
 
-## What's a "C Stack Limit?
+## What's a "C Stack Limit"?
 
 You might have heard of a **stack overflow**. It's probably the [most popular website for programming questions](https://www.stackoverflow.com). It's also a condition that occurs when you try to put too much data onto the stack. If you completely exhaust the stack, memory allocations start failing, and most programs will crash (losing all your data or worse) if they can't allocate memory. You *absolutely don't* want a stack overflow, so R regularly checks stack memory usage and starts sounding the alarm when things get too close.
 
