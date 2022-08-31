@@ -4,7 +4,7 @@ date: 2022-08-30
 
 # About the Site
 
-This site is lovingly handcrafted from organic bytes, and is made possible in part by the following technologies:
+This site is lovingly handcrafted from organic bytes, and is made possible in part by readers like you, and the following technologies:
 
 - Static site hosted on [Github Pages](https://pages.github.com/)
 - Site generation by [Hugo](https://gohugo.io/)
