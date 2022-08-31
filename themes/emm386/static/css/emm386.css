@@ -130,6 +130,15 @@ pre {
     width: 2rem;
 }
 
+.site-logo .alive {
+    fill: #111111;
+}
+
+.site-logo .dead {
+    fill: #ffffff;
+}
+
+
 @media (prefers-color-scheme: dark) {
     body {
         background-color: #151515;
@@ -146,6 +155,14 @@ pre {
 
     pre {
         border: 1px solid #ddd;
+    }
+
+    .site-logo .alive {
+        fill: #ffffff;
+    }
+
+    .site-logo .dead {
+        fill: #111111;
     }
 }
 
