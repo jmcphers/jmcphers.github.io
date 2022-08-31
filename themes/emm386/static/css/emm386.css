@@ -109,7 +109,8 @@ pre {
 
 .header > .name {
     flex-grow: 1;
-    padding-top: 0.5rem;
+    font-size: 2rem;
+    padding-left: 1rem;
 }
 
 .header > ul.links {
@@ -122,6 +123,11 @@ pre {
     padding-left: 10px;
     display: inline-block;
     font-size: medium;
+}
+
+.header .site-logo {
+    height: 2rem;
+    width: 2rem;
 }
 
 @media (prefers-color-scheme: dark) {
