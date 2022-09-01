@@ -193,3 +193,21 @@ h3 {
     line-height: 1;
 }
 
+.bio {
+    margin-top: 3rem;
+    display: flex;
+    flex-direction: row;
+}
+
+.bio p {
+    margin-top: 0;
+}
+
+.bio .text {
+    flex-grow: 1;
+}
+
+.bio .photo {
+    margin-left: 2rem;
+}
+
