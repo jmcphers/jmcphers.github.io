@@ -3,7 +3,7 @@ title: "Favorite Dev Tools, 2022"
 date: 2022-09-19
 ---
 
-There's an overarching theme here, and it's this: *don't settle*. If you are a software engineer, you're using a lot of tools in your terminal that mostly haven't been updated since the 80s. Modernized alternatives to many of these tools exist; with very little effort, you can remove a great deal of the typing and friction in everyday tasks. 
+There's an overarching theme here, and it's this: *don't settle*. If you are a software engineer, you're using a lot of tools in your terminal that mostly haven't been updated since the 80s. Modernized alternatives to many of these tools exist; with very little effort, you can remove a great deal of the typing and friction from everyday tasks. 
 
 # Terminal Tools
 
