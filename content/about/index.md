@@ -12,3 +12,17 @@ This site is lovingly handcrafted from organic bytes, and is made possible in pa
 - CSS includes numerous contributions from [tufte-css](https://edwardtufte.github.io/tufte-css/), including the *et-book* font
 
 
+# What's That Weird Logo, Though?
+
+Oh, this?
+
+```goat {.about-logo}
+o o o o o
+o o * * o
+o * * o o
+o o * o o
+o o o o o
+```
+
+It's an [r-pentamino](https://conwaylife.com/wiki/R-pentomino). It is my favorite [Game of Life](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life) pattern: from a few humble rules and five humbler cells arises a startling explosion of vigorous complexity. Try it out in the simulator! 
+

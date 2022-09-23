@@ -211,3 +211,9 @@ h3 {
     margin-left: 2rem;
 }
 
+.about-logo {
+    width: 10rem;
+    height: 10rem;
+    padding-top: 1rem;
+    padding-bottom: 2rem;
+}
