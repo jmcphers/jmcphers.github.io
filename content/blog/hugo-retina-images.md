@@ -58,11 +58,20 @@ Fortunately, the [srcset attribute](https://developer.mozilla.org/en-US/docs/Lea
 
 Again, we're going to paper over a lot of complexity by just illustrating the simple case, in which we have only two versions of the image -- one at standard resolution, and one at 2x.
 
-```html
+It (almost) couldn't be easier: we just supply an ordinary image and a high-DPI version, and tell the browser to use the latter for displays running at 2x scaling. 
 
+```html
+<img srcset="flower-low-dpi.jpeg, flower-high-dpi.jpeg 2x" />
 ```
 
-## Hugo
+Now the browser will download the image most appropriate for the display -- a low-resolution image for low-resolution displays, a high-resolution image for high-resolution displays. Problem solved?
+
+## Automating Downscaling
+
+As is so often the case with technology, we have solved one problem (inefficient use of bandwidth) by creating another: now we have to make *two versions of every image*. Are we going to forget sometimes? Probably. Is it pointless manual labor? Also yes. Let's get Hugo to do it for us.
+
+Hugo has a feature called [Image Processing](https://gohugo.io/content-management/image-processing/) we can use to automate the generation of these downscaled versions. Here's how it will work.
+
 
 
 ```html
@@ -73,6 +82,7 @@ Again, we're going to paper over a lot of complexity by just illustrating the si
 <img srcset="{{ $img1x.RelPermalink }}, {{ $img2x.RelPermalink }} 2x" 
    src="{{ $img2x.RelPermalink }}" 
    width="{{ (div $img2x.Width 2) }}"
+   height="{{ (div $img2x.Height 2) }}"
    alt="{{ $img2x.Title }}"/>
 ```
 
