@@ -35,16 +35,17 @@ Most editors have only simple commands for moving the cursor (left, up, right, d
 
 Here are a few of the more useful motions:
 
-| `fx` | Move the cursor forward to the next occurance of the character x on the current line (obviously, x can be any character you like). This is an extremely useful command. You can type ; to repeat the last f command you gave.
-| `tx` | Same as above, but moves the cursor to right before the character, not all the way to it. (It's very useful, really.)
-| `Fx` | Move the cursor backward to the next occurance of the character x on the current line.
-| `w`  | Move the cursor forward by a word.
-| `b`  | Move the cursor backward by a word.
-| `0`  | Move the cursor to the beginning of the current line.
-| `^`  | Move the cursor to the first character on the current line.
-| `$`  | Move the cursor to the end of the line
-| `)`  | Move the cursor forward to the next sentence. (Useful when editing e-mail or text documents.)
-| `(`  | Move the cursor backward by a sentence.
+| --- | --- |
+| `fx` | Move the cursor forward to the next occurance of the character x on the current line (obviously, x can be any character you like). This is an extremely useful command. You can type ; to repeat the last f command you gave. |
+| `tx` | Same as above, but moves the cursor to right before the character, not all the way to it. (It's very useful, really.) |
+| `Fx` | Move the cursor backward to the next occurance of the character x on the current line. |
+| `w`  | Move the cursor forward by a word. |
+| `b`  | Move the cursor backward by a word. |
+| `0`  | Move the cursor to the beginning of the current line. |
+| `^`  | Move the cursor to the first character on the current line. |
+| `$`  | Move the cursor to the end of the line |
+| `)`  | Move the cursor forward to the next sentence. (Useful when editing e-mail or text documents.) |
+| `(`  | Move the cursor backward by a sentence. |
 
 
 ### Move efficiently through the file
