@@ -1,6 +1,7 @@
 ---
-layout: page
+layout: post
 title: Efficient Editing with Vim
+date: 2006-05-03
 ---
 
 > "To me, vi is Zen. 
