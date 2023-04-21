@@ -35,6 +35,7 @@ Most editors have only simple commands for moving the cursor (left, up, right, d
 
 Here are a few of the more useful motions:
 
+| | |
 | --- | --- |
 | `fx` | Move the cursor forward to the next occurance of the character x on the current line (obviously, x can be any character you like). This is an extremely useful command. You can type ; to repeat the last f command you gave. |
 | `tx` | Same as above, but moves the cursor to right before the character, not all the way to it. (It's very useful, really.) |
@@ -52,6 +53,8 @@ Here are a few of the more useful motions:
 
 vim has many commands that can send you to where you want to go in your file -- there's rarely a need to scroll manually through it. The below keystrokes are not technically motions, since they move around in the file instead of in a particular line.
 
+| | |
+| --- | --- |
 | `<C-F>`	| Move the cursor forward by a screenful of text
 | `<C-B>`	| Move the cursor backward by a screenful of text
 | `G`	    | Move the cursor to the end of the file
@@ -81,6 +84,8 @@ To use keyword completion, just type the first few letters of the string (e.g. `
 
 Most users new to vim get into insert mode by typing `i`. This works, but it's often pretty inefficient, since vi has a host of commands that leave the editor in insert mode. Here are some of the more popular ones:
 
+| | |
+| --- | --- |
 | `i`	        | Insert text to the left of the current character.
 | `I`	        | Insert text at the beginning of the current line.
 | `a`	        | Insert text to the right of the current character.
@@ -97,6 +102,8 @@ Most users new to vim get into insert mode by typing `i`. This works, but it's o
 
 Unlike the original vi, vim allows you to highlight text and perform operations on it. There are three main visual selection modes (that is, text highlighting modes). These modes are as follows:
 
+| | |
+| --- | --- |
 | `v`	  | Characterwise selection mode. This is the selection mode that most people are used to, so practice with it before trying the others.
 | `V`     |	Linewise selection mode. Whole lines are always selected. This is better than characterwise mode when you want to copy or move a group of lines.
 | `<C-V>` |	Blockwise selection mode. Extremely powerful and available in very few other editors. You can select a rectangular block and any text inside that block will be highlighted.
@@ -107,6 +114,8 @@ All the usual cusor movement keys apply -- so, for instance, `vwww` would go int
 
 Once you have a highlighted selection, you probably want to do something with it. Some of the more useful commands you can give when an area of text is highlighted:
 
+| | |
+| --- | --- |
 | `d`	| Cut (delete) the highlighted text and put it into the clipboard.
 | `y`	| Copy (or yank, which is vim-ese for "copy") the highlighted text into the clipboard.
 | `c`	| Cut the highlighted text into the clipboard. This is just like d, except it leaves the editor in insert mode.
@@ -115,6 +124,8 @@ Once you have a highlighted selection, you probably want to do something with it
 
 If you know exactly what you want to copy or cut, you can do it without entering visual mode. This saves time.
 
+| | |
+| --- | --- |
 | `d{motion}`	| Cut the text moved over by {motion} to the clipboard. For instance, dw would cut a word and dfS would cut from the cursor up to and including the next capital S on the current line of text.
 | `y{motion}`	| Copy the text moved over by {motion}.
 | `c{motion}`	| Cut the text moved over by {motion} and leave the editor in insert mode.
@@ -159,6 +170,8 @@ Counts are one of the most powerful and time-saving features of vim. Any command
 
 Occasionally, you'll find yourself doing the same thing over and over to blocks of text in your document. vim will let you record an ad-hoc macro to perform the operation.
 
+| | |
+| --- | --- |
 | `qregister`	| Start macro recording into the named register. For instance, `qa` starts recording and puts the macro into register *a*.
 | `q`	        | End recording.
 | `@register`	| Replay the macro stored in the named register. For instance, `@a` replays the macro in register *a*.
@@ -169,10 +182,12 @@ Keep in mind that macros just record your keystrokes and play them back; they ar
 
 vim is an excellent editor for source code because it has many features that are specifically designed to help programmers. Here are a few of the more handy ones:
 
+| | |
+| --- | --- |
 | `]p`	| Just like p, but it automatically adjusts the indent level of the pasted code to match that of the code you paste into. Try it!
 | `%`   | Putting the cursor on a brace, bracket, or parenthese and pressing % will send the cursor to the matching brace, bracket, or parenthese. Great for fixing parse problems related to heavily nested blocks of code or logic.
 | `>>`	| Indent the highlighted code. (See the earlier section about efficient text selection. If no text is selected, the current line is indented.)
-| `<<`	| Like >>, but un-indents.
+| `<<`	| Like `>>`, but un-indents.
 | `gd`	| Go to the definition (or declaration) of the function or variable under the cursor.
 | `K`   | Go to the man page for the word currently under the cursor. (For instance, if your cursor is currently over the word sleep, you will see the man page for sleep displayed.)
 
