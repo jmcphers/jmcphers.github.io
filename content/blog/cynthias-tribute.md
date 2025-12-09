@@ -25,5 +25,4 @@ It is not likely I will ever own a car for twenty years again. They don't make t
 
 I'll miss her greatly.
 
-
 ![Me and Cynthia, 2001](/img/cynthia-after.jpg)
