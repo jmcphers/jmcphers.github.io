@@ -82,6 +82,10 @@ a:hover {
     max-width: 800px;
 }
 
+.container p img {
+    max-width: 100%;
+}
+
 .bloglink {
     color: #909090;
 }
