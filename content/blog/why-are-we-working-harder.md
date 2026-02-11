@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "If AI Is So Good, Why Are We Working Harder Than Ever?"
-date: 2025-01-02
+date: 2026-02-11
 ---
 
 AI can accomplish engineering tasks in hours that used to take weeks.
